@@ -41,7 +41,7 @@ public class MagicSquareSimulatedAnnealing {
 			MagicSquareState state = MagicSquareState.initRandom(N);
 
 			TemperatureSchedule schedule = new FactorTemperatureSchedule(30, 0.99999);
-			TemperatureSchedule exp = new ExponentialTemperatureSchedule(30, 0.0001);
+			TemperatureSchedule exp = new ExponentialTemperatureSchedule(30, 0.00001);
 			PerformanceMeasure<MagicSquareState> pm = new NumberOfViolationsMeasure();
 			//@formatter:off
 			SimulatedAnnealingSearch<MagicSquareState, MagicSquareMove, 
@@ -49,7 +49,7 @@ public class MagicSquareSimulatedAnnealing {
 									 PerformanceMeasure<MagicSquareState>> SA = 
 									 	new SimulatedAnnealingSearch<>(new MagicSquareMoveGenerator(), pm, 
 			                                                           AcceptanceStrategy.DEFAULT_STRATEGY,
-			                                                           exp, 10000);
+			                                                           schedule, 10000);
 			//@formatter:on
 			val result = SA.search(state);
 			if (result.getRight() == 0)
