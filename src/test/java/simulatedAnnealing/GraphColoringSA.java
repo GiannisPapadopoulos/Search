@@ -24,10 +24,11 @@ public class GraphColoringSA {
 		String[] problems = { "data/gc_50_3", "data/gc_70_7", "data/gc_100_5", "data/gc_250_9", "data/gc_500_1",
 								"data/gc_1000_5" };
 
-		// int[] best =    {6, 17, 16, 89, 14, 112};
-		// int[] optimal = {6, 17, 15, 73, 12, 81};
+		// Best known solutions : {6, 17, 15, 73, 12, 81};
 
+		// Change to run on a different problem
 		int n = 0;
+
 		String fileName = problems[n];
 
 		Scanner scanner = new Scanner(new File(fileName));
@@ -57,16 +58,17 @@ public class GraphColoringSA {
 		}
 		GraphColoringState startState = new GraphColoringState(graph, coloring);
 
-		TemperatureSchedule schedule = new FactorTemperatureSchedule(30, 0.99999);
+		TemperatureSchedule schedule = new FactorTemperatureSchedule(2, 0.99999);
 		PerformanceMeasure<GraphColoringState> pm = new MinimizeColorClassesMeasure();
 		System.out.println(startState.getColoring());
+		int timeInMs = 10000;
 		//@formatter:off
 		SimulatedAnnealingSearch<GraphColoringState, GraphColoringMove, 
 								 AbstractMoveGenerator<GraphColoringState,GraphColoringMove>, 
 								 PerformanceMeasure<GraphColoringState>> SA = 
 								 	new SimulatedAnnealingSearch<>(new GraphColoringMoveGenerator(), pm, 
 		                                                           AcceptanceStrategy.DEFAULT_STRATEGY,
-		                                                           schedule, 10000);
+		                                                           schedule, timeInMs);
 		//@formatter:on
 		val result = SA.search(startState);
 
