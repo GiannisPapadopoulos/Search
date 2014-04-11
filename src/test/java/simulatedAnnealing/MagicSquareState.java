@@ -24,7 +24,7 @@ public class MagicSquareState
 	}
 
 	@Override
-	public MagicSquareState getClone() {
+	public MagicSquareState copy() {
 		return new MagicSquareState(new ArrayList<Integer>(numbers));
 	}
 

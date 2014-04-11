@@ -63,7 +63,7 @@ public class SimulatedAnnealingSearch<State extends OptimizationState,
 			}
 
 			// next <- a randomly selected successor of current
-			State nextState = currState.getClone();
+			State nextState = currState.copy();
 			move.apply(nextState);
 			// E <- next.VALUE - current.value
 			double nextScore = performanceMeasure.getScore(nextState);
@@ -78,7 +78,7 @@ public class SimulatedAnnealingSearch<State extends OptimizationState,
 			if (currentScore > bestScore) {
 				impr++;
 				bestScore = currentScore;
-				bestState = currState.getClone();
+				bestState = currState.copy();
 			}
 			else {
 				avgV += nextScore;

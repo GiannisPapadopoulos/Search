@@ -41,6 +41,6 @@ public class Vertex<E> extends Element<E> {
 
 	@Override
 	public String toString() {
-		return "Vertex " + getID() + " " + data.toString();
+		return "Vertex " + getID() + " " + data;
 	}
 }
