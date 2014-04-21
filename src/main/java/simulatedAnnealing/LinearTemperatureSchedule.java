@@ -1,25 +1,31 @@
 package simulatedAnnealing;
 
+/**
+ * Linearly changing temperature, with newTemp = oldTemp - difference
+ * The temperature changes after each move that is accepted
+ * 
+ * @author Giannis Papadopoulos
+ */
 public class LinearTemperatureSchedule
 		extends TemperatureSchedule {
 
-	private double currentTemp;
-	private double diffence;
+	private double currentTemperature;
+	private final double diffence;
 
 	public LinearTemperatureSchedule(double T0, double difference) {
-		this.currentTemp = T0;
+		this.currentTemperature = T0;
 		this.diffence = difference;
 	}
 
 	@Override
 	public double getTemperature() {
-		return currentTemp;
+		return currentTemperature;
 	}
 
 	@Override
 	public void updateTemperature(boolean isAccepted) {
 		if (isAccepted)
-			currentTemp = Math.max(0, currentTemp - diffence);
+			currentTemperature = Math.max(0, currentTemperature - diffence);
 	}
 
 }

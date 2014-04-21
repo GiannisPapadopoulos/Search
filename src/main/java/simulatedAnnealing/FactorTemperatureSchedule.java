@@ -1,25 +1,30 @@
 package simulatedAnnealing;
 
+/**
+ * The temperature changes after each accepted move with newTemp = oldTemp * factor
+ * 
+ * @author Giannis Papadopoulos
+ */
 public class FactorTemperatureSchedule
 		extends TemperatureSchedule {
 
-	private double currentTemp;
-	private double factor;
+	private double currentTemperature;
+	/** The scaling factor */
+	private final double factor;
 
 	public FactorTemperatureSchedule(double T0, double factor) {
-		this.currentTemp = T0;
+		this.currentTemperature = T0;
 		this.factor = factor;
 	}
 
 	@Override
 	public double getTemperature() {
-		
-		return currentTemp;
+		return currentTemperature;
 	}
 
 	@Override
 	public void updateTemperature(boolean isAccepted) {
 		if(isAccepted)
-			currentTemp *= factor;
+			currentTemperature *= factor;
 	}
 }

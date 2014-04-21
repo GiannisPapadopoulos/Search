@@ -50,6 +50,10 @@ public class GraphColoringMove
 				}
 			}
 		}
+
+		// System.out.println("before " + state.getColoring() + " " + state.getColoring().max());
+		TIntList coloring = state.getColoring();
+		int max = coloring.max();
 		TIntIterator iterator = explored.iterator();
 		while (iterator.hasNext()) {
 			swapColor(state, iterator.next(), oldColor);
@@ -57,6 +61,21 @@ public class GraphColoringMove
 
 		// TODO if a color is no longer used, swap it with another to keep the color indices in [0, k)
 
+		if (!coloring.contains(oldColor) && oldColor != max) {
+			int toRemove = max;
+			// System.out.println("before swap " + coloring);
+			for (int i = 0; i < coloring.size(); i++) {
+				if (coloring.get(i) == toRemove) {
+					coloring.set(i, oldColor);
+				}
+			}
+			// System.out.println("after swap " + coloring);
+		}
+		// System.out.println("vertex " + vertex + " old " + oldColor + " newC " + newColor);
+		// System.out.println("after " + state.getColoring());
+
+		assert new TIntHashSet(coloring).size() == coloring.max() + 1 : (coloring.max() + 1) + " "
+																	+ new TIntHashSet(coloring).size() + " " + coloring;
 	}
 
 	private void swapColor(GraphColoringState state, int v, int oldColor) {

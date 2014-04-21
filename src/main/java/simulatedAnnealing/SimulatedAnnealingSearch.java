@@ -5,10 +5,25 @@ import java.util.Random;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
+/**
+ * The core class that runs the simulated annealing search
+ * 
+ * @param <State>
+ *        The type of the state that serves as an abstraction of the problem
+ * @param <Move>
+ *        The type of move that will be applied to the state
+ * @param <Generator>
+ *        The type of the move generator
+ * @param <Measure>
+ *        The type of the performance measure used to evaluate the objective function at a given state
+ * 
+ * @author Giannis Papadopoulos
+ */
 @RequiredArgsConstructor
 @AllArgsConstructor
 //@formatter:off
@@ -24,11 +39,11 @@ public class SimulatedAnnealingSearch<State extends OptimizationState,
 	@NonNull
 	private AcceptanceStrategy acceptanceStrategy;
 	@NonNull
+	@Setter
 	private TemperatureSchedule scheduler;
 
 	/** Time in milliseconds */
-	@NonNull
-	private long allowedTime;
+	private final long allowedTime;
 
 	// @Getter
 	// private State bestState;
