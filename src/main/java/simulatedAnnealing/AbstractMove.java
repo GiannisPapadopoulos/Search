@@ -8,6 +8,6 @@ package simulatedAnnealing;
  */
 public abstract class AbstractMove<State extends OptimizationState> {
 
-	/** Apply the move by mutating the given state */
-	public abstract void apply(State state);
+  /** Apply the move by mutating the given state */
+  public abstract void apply(State state);
 }
