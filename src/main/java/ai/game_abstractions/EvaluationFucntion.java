@@ -1,6 +1,5 @@
 package ai.game_abstractions;
 
-
 /**
  * The EvaluationFucntion provides a way to determine the value of a state for the first(MAX) player in a game. A
  * requirement is for the game to be zero sum
