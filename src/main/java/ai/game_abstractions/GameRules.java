@@ -31,5 +31,10 @@ public abstract class GameRules<State extends GameState, Move extends GameMove<S
   public enum Player {
     MAX,
     MIN;
+
+    /** Returns the other player */
+    public static Player getOtherPlayer(Player player) {
+      return player == MAX ? MIN : MAX;
+    }
   }
 }

@@ -25,7 +25,7 @@ public class TicTacToeNegamaxTest {
   @Test
   public void simpleTest() {
     BoardSymbols[][] board = { { X, O, X }, { O, X, EMPTY }, { O, EMPTY, EMPTY } };
-    TicTacToeState currentState = new TicTacToeState(board, Player.MAX);
+    TicTacToeState currentState = new TicTacToeState(board, Player.MIN);
 
     // BoardSymbols[][] board = { { X, O, X }, { O, X, X }, { O, EMPTY, EMPTY } };
     // TicTacToeState currentState = new TicTacToeState(board, Player.MIN);
